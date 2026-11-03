@@ -1,12 +1,4 @@
-import {
-  Anchor,
-  Badge,
-  Flex,
-  List,
-  Stack,
-  Text,
-  Title,
-} from '@mantine/core';
+import { Anchor, Badge, Group, Text, Title } from '@mantine/core';
 
 type Project = {
   route: string;
@@ -23,46 +15,41 @@ type ProjectCardProps = {
 
 function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <Flex
-      className="proj"
-      direction={{ base: 'column', md: 'row' }}
-      gap="xl"
-      align="flex-start"
-    >
+    <article className="proj">
       <Text className="route">
-        <Text span fw={700}>GET</Text> {project.route}
+        <em>GET</em>
+        {project.route}
       </Text>
 
-      <Stack gap="sm" style={{ flex: 1 }}>
+      <div>
         <Title order={3}>{project.title}</Title>
 
-        <Text>{project.description}</Text>
+        <Text className="proj-desc">{project.description}</Text>
 
-        <List>
+        <ul>
           {project.features.map((feature) => (
-            <List.Item key={feature}>
-              {feature}
-            </List.Item>
+            <li key={feature}>{feature}</li>
           ))}
-        </List>
+        </ul>
 
-        <Flex gap="xs" wrap="wrap">
+        <Group gap={6}>
           {project.technologies.map((technology) => (
-            <Badge key={technology}>
+            <Badge key={technology} className="tag" variant="default" radius="sm" tt="none">
               {technology}
             </Badge>
           ))}
-        </Flex>
-      </Stack>
+        </Group>
+      </div>
 
       <Anchor
+        className="link"
         href={project.github}
         target="_blank"
         rel="noopener noreferrer"
       >
-        Código ↗
+        código ↗
       </Anchor>
-    </Flex>
+    </article>
   );
 }
 

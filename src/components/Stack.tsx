@@ -1,43 +1,26 @@
-import { Container, Flex, SimpleGrid, Stack, Text, Title } from '@mantine/core';
+import { SimpleGrid, Text, Title } from '@mantine/core';
 
 import { stack } from '../data/stack';
 
 function StackSection() {
   return (
     <section id="stack">
-      <Container size="lg">
-        <Stack gap="xl">
+      <div className="sec-h">
+        <Title order={2}>Stack</Title>
+        <Text component="small">o que uso no dia a dia</Text>
+      </div>
 
-          <Flex justify="space-between" align="center">
-            <Title order={2}>Stack</Title>
-
-            <Text size="sm" c="dimmed">
-              O que uso no dia a dia
+      <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="xl" className="stack">
+        {stack.map((item) => (
+          <div key={item.category}>
+            <Title order={4}>{item.category}</Title>
+            <Text>
+              {item.technologies}
+              {item.note && <span className="lvl"> ({item.note})</span>}
             </Text>
-          </Flex>
-
-          <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} spacing="xl">
-            {stack.map((item) => (
-              <Stack key={item.category} gap="xs">
-                <Title order={4}>
-                  {item.category}
-                </Title>
-
-                <Text>
-                  {item.technologies}
-
-                  {item.note && (
-                    <Text span c="dimmed" size="sm">
-                      {' '}({item.note})
-                    </Text>
-                  )}
-                </Text>
-              </Stack>
-            ))}
-          </SimpleGrid>
-
-        </Stack>
-      </Container>
+          </div>
+        ))}
+      </SimpleGrid>
     </section>
   );
 }

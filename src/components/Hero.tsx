@@ -1,66 +1,58 @@
-import {
-  Container,
-  Flex,
-  Stack,
-  Text,
-  Title,
-  Anchor,
-} from '@mantine/core';
+import { Button, Group, Text, Title } from '@mantine/core';
 
 import HeroCode from './HeroCode';
 
 function Hero() {
   return (
-    <section id="inicio">
-      <Container size="lg">
-        <Flex
-          direction={{ base: 'column', md: 'row' }}
-          align="center"
-          justify="space-between"
-          gap="xl"
-        >
-          <Stack gap="md">
-            <Text>
-              Disponível para estágio e vaga júnior
-            </Text>
+    <section id="inicio" className="hero">
+      <div>
+        <Text className="eyebrow">
+          <span className="dot" />
+          Disponível para estágio e vaga júnior
+        </Text>
 
-            <div>
-              <Title order={1}>Matheus.</Title>
-              <Title order={2}>Backend em Java.</Title>
-            </div>
+        <Title order={1} className="hero-title">
+          Matheus.
+          <br />
+          <span>Backend em Java.</span>
+        </Title>
 
-            <Text>
-              Construo APIs REST com Spring Boot, banco relacional e
-              segurança com JWT. Estou aprendendo React para entregar
-              aplicações completas.
-            </Text>
+        <Text className="lede">
+          Construo <strong>APIs REST com Spring Boot</strong>, banco relacional e
+          segurança com JWT. Estou aprendendo React para entregar aplicações
+          completas.
+        </Text>
 
-            <Flex gap="lg" wrap="wrap">
-              <Anchor href="#projetos">
-                Ver projetos →
-              </Anchor>
+        <Group gap="sm" className="actions">
+          <Button component="a" href="#projetos" size="md">
+            Ver projetos
+          </Button>
 
-              <Anchor
-                href="https://github.com/SEU_USUARIO"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub ↗
-              </Anchor>
+          <Button
+            component="a"
+            href="https://github.com/matheuzzx/"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="default"
+            size="md"
+          >
+            GitHub
+          </Button>
 
-              <Anchor
-                href="https://linkedin.com/in/SEU_USUARIO"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn ↗
-              </Anchor>
-            </Flex>
-          </Stack>
+          <Button
+            component="a"
+            href="https://www.linkedin.com/in/fxckedz/"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="default"
+            size="md"
+          >
+            LinkedIn
+          </Button>
+        </Group>
+      </div>
 
-          <HeroCode />
-        </Flex>
-      </Container>
+      <HeroCode />
     </section>
   );
 }

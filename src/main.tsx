@@ -1,14 +1,16 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import "./styles/main.css"
-
 import { MantineProvider } from '@mantine/core';
+
+import App from './App.tsx'
+import { theme } from './theme';
+
 import '@mantine/core/styles.css';
+import './styles/main.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <MantineProvider forceColorScheme='dark'>
+    <MantineProvider theme={theme} defaultColorScheme="auto">
       <App />
     </MantineProvider>
   </StrictMode>,

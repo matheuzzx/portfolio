@@ -1,50 +1,28 @@
-import {
-  Button,
-  Container,
-  CopyButton,
-  Flex,
-  Stack,
-  Text,
-  Title,
-} from '@mantine/core';
+import { Button, CopyButton, Text, Title } from '@mantine/core';
 
 function Contact() {
   const email = 'promatheusmedeiros@gmail.com';
 
   return (
-    <section id="contato">
-      <Container size="lg">
-        <Flex
-          direction={{ base: 'column', md: 'row' }}
-          justify="space-between"
-          align="center"
-          gap="xl"
-        >
-          <Stack gap="xs">
-            <Title order={2}>Vamos conversar?</Title>
+    <section id="contato" className="contact">
+      <div>
+        <Title order={2}>Vamos conversar?</Title>
+        <Text>
+          Aberto a estágio e vagas júnior em backend Java, presencial ou remoto.
+        </Text>
+      </div>
 
-            <Text>
-              Aberto a estágio e vagas júnior em backend Java,
-              presencial ou remoto.
-            </Text>
-          </Stack>
+      <div className="mail">
+        <code>{email}</code>
 
-          <Flex align="center" gap="md" wrap="wrap">
-            <Text>{email}</Text>
-
-            <CopyButton value={email} timeout={2000}>
-              {({ copied, copy }) => (
-                <Button
-                  onClick={copy}
-                  color={copied ? 'teal' : 'blue'}
-                >
-                  {copied ? 'E-mail copiado!' : 'Copiar e-mail'}
-                </Button>
-              )}
-            </CopyButton>
-          </Flex>
-        </Flex>
-      </Container>
+        <CopyButton value={email} timeout={1600}>
+          {({ copied, copy }) => (
+            <Button onClick={copy} size="md" color={copied ? 'teal' : undefined}>
+              {copied ? 'Copiado' : 'Copiar e-mail'}
+            </Button>
+          )}
+        </CopyButton>
+      </div>
     </section>
   );
 }

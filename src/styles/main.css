@@ -1,3 +1,48 @@
+/* Cores por tema: o Mantine coloca data-mantine-color-scheme no <html> */
+:root {
+  --bg: #eef1f4;
+  --surface: #ffffff;
+  --ink: #14202e;
+  --muted: #5a6878;
+  --line: #d6dde5;
+  --accent: #2343d6;
+  --ok: #11845b;
+
+  --code-bg: #0f1a28;
+  --code-fg: #d9e2ec;
+  --code-key: #ffb17a;
+  --code-str: #8cc2ff;
+  --code-num: #4fd19c;
+  --code-punct: #7a8899;
+  --code-method: #7d93ff;
+
+  --display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+:root[data-mantine-color-scheme="dark"] {
+  --bg: #0d141d;
+  --surface: #141e2a;
+  --ink: #e6ecf2;
+  --muted: #93a1b0;
+  --line: #253242;
+  --accent: #7d93ff;
+  --ok: #4fd19c;
+  --code-bg: #0a1018;
+}
+
+/* Faz os componentes do Mantine usarem a mesma paleta */
+:root[data-mantine-color-scheme] {
+  --mantine-color-body: var(--bg);
+  --mantine-color-text: var(--ink);
+  --mantine-color-dimmed: var(--muted);
+  --mantine-color-default: var(--surface);
+  --mantine-color-default-border: var(--line);
+  --mantine-color-default-hover: var(--surface);
+  --mantine-color-anchor: var(--accent);
+}
+
 *,
 *::before,
 *::after {
@@ -11,21 +56,314 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  min-height: 100vh;
-  background-color: #eef1f4;
-  color: #14202e;
-}
-
-#root {
-  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1rem/1.6 var(--body);
 }
 
 a {
   color: inherit;
 }
 
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Layout geral */
+.wrap {
+  display: grid;
+  gap: 4.5rem;
+  padding-block: 3.5rem 2.5rem;
+}
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: 500 0.78rem/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--ok) 20%, transparent);
+}
+
+.hero .hero-title {
+  font: 800 clamp(2.8rem, 7vw, 4.6rem)/0.95 var(--display);
+  letter-spacing: -0.03em;
+  margin: 1rem 0 1.1rem;
+  text-wrap: balance;
+}
+
+.hero .hero-title span {
+  color: var(--accent);
+}
+
+.hero .lede {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 34rem;
+}
+
+.hero .lede strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.hero .actions {
+  margin-top: 1.75rem;
+}
+
+.hero .actions a {
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.hero .actions a:hover {
+  transform: translateY(-1px);
+}
+
+/* Cartão "resposta HTTP" (HeroCode) — escuro nos dois temas */
+.res {
+  background: var(--code-bg);
+  color: var(--code-fg);
+  border-radius: 12px;
+  font: 400 0.88rem/1.75 var(--mono);
+  overflow: hidden;
+  box-shadow: 0 20px 40px -24px rgba(10, 20, 40, 0.45);
+}
+
+.res-head {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.75rem 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.8rem;
+}
+
+.res-head b {
+  color: var(--code-method);
+  font-weight: 500;
+}
+
+.res-head .s {
+  color: var(--code-num);
+}
+
+.res pre {
+  margin: 0;
+  padding: 1rem 1.1rem 1.2rem;
+  overflow-x: auto;
+  font: inherit;
+}
+
+.res .k { color: var(--code-key); }
+.res .v { color: var(--code-str); }
+.res .n { color: var(--code-num); }
+.res .p { color: var(--code-punct); }
+
+/* Cabeçalho das seções */
+.sec-h {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.sec-h h2 {
+  font: 700 1.6rem/1.1 var(--display);
+  letter-spacing: -0.02em;
+}
+
+.sec-h small {
+  font: 400 0.8rem var(--mono);
+  color: var(--muted);
+}
+
+/* Projetos */
+.proj {
+  display: grid;
+  grid-template-columns: 12rem minmax(0, 1fr) auto;
+  gap: 1.5rem;
+  align-items: start;
+  padding-block: 1.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.proj .route {
+  font: 500 0.8rem/1.4 var(--mono);
+  color: var(--muted);
+  padding-top: 0.35rem;
+}
+
+.proj .route em {
+  font-style: normal;
+  color: var(--ok);
+  margin-right: 0.35rem;
+}
+
+.proj h3 {
+  font: 700 1.35rem/1.2 var(--display);
+  margin: 0 0 0.4rem;
+}
+
+.proj .proj-desc {
+  margin: 0 0 0.9rem;
+  color: var(--muted);
+  max-width: 40rem;
+}
+
+.proj ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.9rem;
+  display: grid;
+  gap: 0.3rem;
+  max-width: 40rem;
+}
+
+.proj li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.95rem;
+}
+
+.proj li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.proj .tag {
+  font: 500 0.74rem/1 var(--mono);
+  height: auto;
+  padding: 0.4rem 0.55rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.proj .link {
+  font: 500 0.85rem var(--mono);
+  color: var(--accent);
+  white-space: nowrap;
+  padding-top: 0.35rem;
+}
+
+/* Stack */
+.stack {
+  padding-top: 1.25rem;
+}
+
+.stack h4 {
+  font: 500 0.75rem var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.6rem;
+}
+
+.stack .lvl {
+  font: 400 0.78rem var(--mono);
+  color: var(--muted);
+}
+
+/* Contato */
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.contact h2 {
+  font: 700 2rem/1.1 var(--display);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.contact p {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+}
+
+.mail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mail code {
+  font: 500 0.9rem var(--mono);
+  padding: 0.8rem 1rem;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  user-select: all;
+  word-break: break-all;
+}
+
+/* Rodapé */
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  font: 400 0.78rem var(--mono);
+  color: var(--muted);
+}
+
+/* Celular e tablet */
+@media (max-width: 820px) {
+  .wrap {
+    gap: 3.5rem;
+    padding-block: 2rem;
+  }
+
+  .hero,
+  .contact {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .proj {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .hero .actions a {
+    transition: none;
   }
 }

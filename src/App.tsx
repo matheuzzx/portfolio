@@ -4,22 +4,19 @@ import StackSection from "./components/Stack"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 
-import { Container, Stack } from '@mantine/core';
+import { Container } from '@mantine/core';
 
 function App() {
   return (
-    <>
-      <Container size={1088} py="56px">
-        <Stack gap="72px">
-          <Hero />
-          <Projects />
-          <StackSection />
-          <Contact />
-        </Stack>
+    <main>
+      <Container size={1088} className="wrap">
+        <Hero />
+        <Projects />
+        <StackSection />
+        <Contact />
+        <Footer />
       </Container>
-
-      <Footer />
-    </>
+    </main>
   );
 }
 
